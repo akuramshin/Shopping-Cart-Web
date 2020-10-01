@@ -47,7 +47,41 @@
       </div>
   
   <div class="container text-center">
-    <button type="button" class="btn btn-primary" id="add">Add Item</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodal" id="add-item">Add Item</button>
+
+    <div class="modal" id="mymodal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+    
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Add Item</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+    
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="container">
+              <table class="table table-striped" id="items">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th></th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+    
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+    
+        </div>
+      </div>
+    </div>
   </div>
 
     </div>
@@ -55,7 +89,6 @@
         <div class="container card bg-light">
           <h2 class="my-5 ">Totals</h2>
           <div>
-
             <table class="table table-borderless table-sm">
               <tbody>
                 <td>Subtotal:</td>
