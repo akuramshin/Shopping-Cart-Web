@@ -1,10 +1,9 @@
 from flask import Flask, render_template, abort
 app = Flask(__name__)
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    user = {'username': 'Artur'}
-    return render_template('index.html', title='Home', user=user)
+    return render_template('shopping_list.html')
 
-app.run()
+if __name__ == "__main__":
+    app.run(debug=True, use_reloader=True)
