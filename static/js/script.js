@@ -3,7 +3,22 @@ var subtotal = 0.00;
 var tax = 0.00;
 const tax_rate = 0.13;
 var cart = {};
-var items = {"milk": 9.99, "eggs": 11.99, "butter": 5.99};
+//var items = {"milk": 9.99, "eggs": 11.99, "butter": 5.99};
+var items = {};
+
+$(function() {
+    $.ajax({
+        url: $SCRIPT_ROOT + '/_get_data',
+        async: false,
+        dataType: 'json',
+        success: function(data) {
+            $.each(data, function(key, val) {
+                items[key] = val;
+                console.log("Item: " + key)
+            });
+        }
+    });
+}); 
 
 function update_totals(price_change, inc) {
     if (inc == 0) {
