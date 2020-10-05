@@ -58,7 +58,7 @@ function update_totals(price_change, inc, discount) {
 }
 
 var quantity1 = "<select id=\"quantity\" class=\"bootstrap-select ";
-var quantity2 = "\"><option value=\"1\" selected=\"selected\">1</option><option value=\"2\">2</option><option value=\"3\">3</option><option value=\"4\">4</option></select>";
+var quantity2 = "\"><option value=\"1\" selected=\"selected\" id=\"option1\">1</option><option value=\"2\" id=\"option2\">2</option><option value=\"3\" id=\"option3\">3</option><option value=\"4\" id=\"option4\">4</option></select>";
 
 //wait until the html fully loads, then run scripts
 $(document).ready(
@@ -66,8 +66,13 @@ $(document).ready(
     {
         //initializer, after retrieving data from database create table elements for each item
         for (let key in cart) {
-            $("#cart tr:last").after("<tr><td>" + key + "</td><td>" + quantity1 + key + quantity2 + "</td><td>$" + items[key] + "</td><td><button type=\"button\" class=\"btn btn-primary ml-5 bg-danger " + key + "\" id=\"remove\">Remove</button></td></tr>");
+            $("#cart tr:last").after("<tr id=\"tr" + key + "\"><td>" + key + "</td><td>" + quantity1 + key + quantity2 + "</td><td>$" + items[key] + "</td><td><button type=\"button\" class=\"btn btn-primary ml-5 bg-danger " + key + "\" id=\"remove\">Remove</button></td></tr>");
             update_totals(items[key]*cart[key], 1, discount);
+            
+            if (cart[key] != 1) {
+                $("#tr" + key +" #option1").removeProp("selected");
+                $("#tr" + key + " #option" + cart[key]).prop("selected", "selected");
+            }
         }
 
         for (let key in items) {
