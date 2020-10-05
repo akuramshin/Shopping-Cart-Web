@@ -6,6 +6,8 @@ const tax_rate = 0.13;
 var cart = {};
 var items = {};
 var discount = 100;
+
+//function that retrieves data on items from the database
 $(function() {
     $.ajax({
         url: $SCRIPT_ROOT + '/_get_data',
@@ -19,6 +21,7 @@ $(function() {
     });
 }); 
 
+//Function to update the displayed totals after adding/removing items from cart
 function update_totals(price_change, inc, discount) {
     if (inc == 0) {
         subtotal = (subtotal - price_change);
@@ -50,17 +53,17 @@ function update_totals(price_change, inc, discount) {
 var quantity1 = "<select id=\"quantity\" class=\"bootstrap-select ";
 var quantity2 = "\"><option value=\"1\" selected=\"selected\">1</option><option value=\"2\">2</option><option value=\"3\">3</option><option value=\"4\">4</option></select>";
 
+//wait until the html fully loads, then run scripts
 $(document).ready(
     function()
     {
-        //after retrieving data from database, create table elements for each item for customer to add
+        //initializer, after retrieving data from database create table elements for each item
         for (let key in items) {
             $("#items tr:last").after("<tr><td>" + key + "</td><td>$" + items[key] + "</td><td><button type=\"button\" class=\"btn btn-primary ml-5 bg-primary " + key +"\" data-dismiss=\"modal\" id=\"add\">Add</button></td></tr>");
         }
 
         //when the user clicks the add button to add items to cart
         $(document).on('click', '#add', function() {
-
             for (let key in items){
                 if ($(this).hasClass(key)) {
                     $("#cart tr:last").after("<tr><td>" + key + "</td><td>" + quantity1 + key + quantity2 + "</td><td>$" + items[key] + "</td><td><button type=\"button\" class=\"btn btn-primary ml-5 bg-danger " + key + "\" id=\"remove\">Remove</button></td></tr>");
@@ -93,7 +96,6 @@ $(document).ready(
 
         //when we remove an item from the cart, update prices and quantities
         $(document).on('click', '#remove', function(){ 
-
             for (let key in items){
                 if ($(this).hasClass(key)) {
                     $("#add." + key).attr("disabled", false);
@@ -110,8 +112,9 @@ $(document).ready(
         $(document).on('click', "#coupon-apply", function(){
             var code = $("#coupon-code").val();
 
+            //if the coupon has not been applied yet
             if ($(this).hasClass("not-applied")) {
-
+                
                 if (isNaN(parseInt(code)) || !(/^\d+$/.test(code))) {
                     $("#coupon-success").text("Invalid coupon code");
                     $("#coupon-success").addClass("text-danger");
@@ -134,6 +137,7 @@ $(document).ready(
                     }
                 }
             }
+            //the coupon has already been applied, another press will remove the coupon
             else {
                 $("#coupon-success").text("");
                 $("#coupon-code").attr("disabled", false);
