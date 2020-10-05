@@ -9,7 +9,6 @@ var discount = 100;
 
 //function that retrieves data on items from the database
 $(function() {
-    console.log("Loading in data...")
     $.ajax({
         url: $SCRIPT_ROOT + '/_get_data',
         async: false,
@@ -25,26 +24,7 @@ $(function() {
             });
         }
     });
-    console.log("Done loading data...")
 }); 
-
-function update_items(){
-    for (let key in cart) {
-        $("#cart tr:last").after("<tr id=\"tr" + key + "\"><td>" + key + "</td><td>" + quantity1 + key + quantity2 + "</td><td>$" + items[key] + "</td><td><button type=\"button\" class=\"btn btn-primary ml-5 bg-danger " + key + "\" id=\"remove\">Remove</button></td></tr>");
-        update_totals(items[key]*cart[key], 1, discount);
-        
-        if (cart[key] != 1) {
-            $("#tr" + key +" #option1").removeProp("selected");
-            $("#tr" + key + " #option" + cart[key]).prop("selected", "selected");
-        }
-    }
-
-    for (let key in items) {
-        if (!(key in cart)){
-            $("#items tr:last").after("<tr><td>" + key + "</td><td>$" + items[key] + "</td><td><button type=\"button\" class=\"btn btn-primary ml-5 bg-primary " + key +"\" data-dismiss=\"modal\" id=\"add\">Add</button></td></tr>");
-        }
-    }
-}
 
 //Function to update the displayed totals after adding/removing items from cart
 function update_totals(price_change, inc, discount) {
@@ -83,7 +63,21 @@ $(document).ready(
     function()
     {
         //initializer, after retrieving data from database create table elements for each item
-        update_items()
+        for (let key in cart) {
+            $("#cart tr:last").after("<tr id=\"tr" + key + "\"><td>" + key + "</td><td>" + quantity1 + key + quantity2 + "</td><td>$" + items[key] + "</td><td><button type=\"button\" class=\"btn btn-primary ml-5 bg-danger " + key + "\" id=\"remove\">Remove</button></td></tr>");
+            update_totals(items[key]*cart[key], 1, discount);
+            
+            if (cart[key] != 1) {
+                $("#tr" + key +" #option1").removeProp("selected");
+                $("#tr" + key + " #option" + cart[key]).prop("selected", "selected");
+            }
+        }
+
+        for (let key in items) {
+            if (!(key in cart)){
+                $("#items tr:last").after("<tr><td>" + key + "</td><td>$" + items[key] + "</td><td><button type=\"button\" class=\"btn btn-primary ml-5 bg-primary " + key +"\" data-dismiss=\"modal\" id=\"add\">Add</button></td></tr>");
+            }
+        }
 
         //when the user clicks the add button to add items to cart
         $(document).on('click', '#add', function() {
@@ -142,9 +136,9 @@ $(document).ready(
                         contentType: "application/json",
                     });
                     delete cart[key];
-                    update_items()
                     $(this).parent().parent().remove();
-                    break;
+                    location.reload()
+                    return false
                 }
                 
             }
