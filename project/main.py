@@ -52,6 +52,7 @@ def cart_item_post():
         item = current_user.items.filter_by(name=item_name).first()
         if item:
             current_user.items.remove(item)
+        db.session.delete(item)
     db.session.commit()
     return resp
 

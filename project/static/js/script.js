@@ -9,6 +9,7 @@ var discount = 100;
 
 //function that retrieves data on items from the database
 $(function() {
+    console.log("Loading in data...")
     $.ajax({
         url: $SCRIPT_ROOT + '/_get_data',
         async: false,
@@ -24,6 +25,7 @@ $(function() {
             });
         }
     });
+    console.log("Done loading data...")
 }); 
 
 //Function to update the displayed totals after adding/removing items from cart
