@@ -26,7 +26,7 @@ def get_data():
 
     user_dict = {}
     for item in current_user.items:
-        user_dict[item.name] = item.price
+        user_dict[item.name] = item.amount
 
     data_dict["store"] = items_dict
     data_dict["user"] = user_dict
@@ -36,6 +36,7 @@ def get_data():
 @login_required
 def cart_item_post():
     resp = jsonify(success=True)
+    print(request.json)
     action = request.json['action']
     item_name = request.json['name']
     item_amount = request.json['amount']
@@ -43,9 +44,10 @@ def cart_item_post():
     if (action == "add"):
         item = current_user.items.filter_by(name=item_name).first()
         if item:
-            return resp
-        item = Item(name=item_name, price=item_amount)
-        current_user.items.append(item)
+            item.amount = item_amount
+        else:
+            item = Item(name=item_name, amount=item_amount)
+            current_user.items.append(item)
     else:
         item = current_user.items.filter_by(name=item_name).first()
         if item:
