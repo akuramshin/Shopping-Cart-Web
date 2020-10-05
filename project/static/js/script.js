@@ -137,7 +137,7 @@ $(document).ready(
                     });
                     delete cart[key];
                     $(this).parent().parent().remove();
-                    location.reload()
+                    window.location.reload()
                     return false
                 }
                 
