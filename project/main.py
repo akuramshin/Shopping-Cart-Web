@@ -36,7 +36,6 @@ def get_data():
 @login_required
 def cart_item_post():
     resp = jsonify(success=True)
-    print(request.json)
     action = request.json['action']
     item_name = request.json['name']
     item_amount = request.json['amount']
