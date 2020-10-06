@@ -22,3 +22,5 @@ This website runs off of Python3 and Flask, so you may need to install a few thi
 2. Clone the repository onto your machine
 3. Run the following command: `python3 run.py`
 4. Copy the address given and open it in a browser, (http://127.0.0.1:5000/)
+
+Note: Discount codes are just the number and represent the % discount you receive. e.g. Coupon code: 10 = 10% off
