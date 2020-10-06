@@ -1,7 +1,7 @@
 # assignment-1-95-ekuuuu-akuramshin-web
 assignment-1-95-ekuuuu-akuramshin-web created by GitHub Classroom
 
-#h1 Instructions to run Website
+# Instructions to run Website
 
 This website runs off of Python3 and Flask, so you may need to install a few things to the bash shell.
 
@@ -15,7 +15,7 @@ This website runs off of Python3 and Flask, so you may need to install a few thi
 
 `pip3 install flask_login`
 
-`pip install -U pytest`
+`pip3 install -U pytest`
 
 `sudo apt install virtualenv`
 
