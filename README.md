@@ -6,11 +6,16 @@ assignment-1-95-ekuuuu-akuramshin-web created by GitHub Classroom
 This website runs off of Python3 and Flask, so you may need to install a few things to the bash shell.
 
 1. Some of the following may be needed to be run first in order to use the website:
-`sudo apt install python3-flask`\n
-`sudo apt install python3-pip`\n
-`pip3 install flask-sqlalchemy `\n
-`pip3 install flask_login`\n
-`sudo apt install virtualenv`\n
+`sudo apt install python3-flask`
+<br />
+`sudo apt install python3-pip`
+<br />
+`pip3 install flask-sqlalchemy `
+<br />
+`pip3 install flask_login`
+<br />
+`sudo apt install virtualenv`
+<br />
 `sudo apt-get update`
 
 2. Clone the repository onto your machine
