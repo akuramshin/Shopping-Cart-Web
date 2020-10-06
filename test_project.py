@@ -71,6 +71,7 @@ def test_signup(client):
     assert b'Email address already exists' in rv.data
 
 def test_saving_cart(client):
+    """Make sure shopping carts work"""
     signup(client, test_email, test_pass)
     login(client, test_email, test_pass)
 

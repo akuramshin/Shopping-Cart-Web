@@ -1,8 +1,9 @@
+""" Idea for layout of this file is taken from https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-your-app-with-flask-login"""
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
-# init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
 
 def create_app():
